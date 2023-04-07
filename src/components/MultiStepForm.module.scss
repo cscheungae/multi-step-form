@@ -1,0 +1,41 @@
+.wrapper :global {
+  background: url('../../assets/images/bg-sidebar-mobile.svg') no-repeat;
+  background-size: 100% auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .formContainer {
+    flex: 1;
+
+    .formContent {
+      background-color: var(--bg-white);
+      margin: 0 1rem;
+      padding: 2rem 1rem;
+      height: fit-content;
+      @apply rounded-md shadow-xl shadow-slate-200;
+
+      .formTitle {
+        color: var(--font-blue-dark);
+        @apply text-lg font-bold;
+      }
+
+      .formDescription {
+        color: var(--font-gray-light);
+        @apply text-xs mt-2;
+      }
+    }
+  }
+
+  .actionsBar {
+    flex: 0 0 auto;
+    background: var(--bg-white);
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      background-color: var(--button-blue-dark);
+      color: var(--font-white);
+    }
+  }
+}

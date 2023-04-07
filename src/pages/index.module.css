@@ -1,0 +1,20 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.expand {
+  flex: 1;
+  background-color: var(--bg-blue-light);
+  display: flex;
+  justify-content: center;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.anchor {
+  color: hsl(228, 45%, 44%);
+}

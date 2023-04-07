@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: ubuntu;
+  src: url(../../assets/fonts/Ubuntu-Regular.ttf);
+}
+@font-face {
+  font-family: ubuntu;
+  font-weight: 500;
+  src: url(../../assets/fonts/Ubuntu-Medium.ttf);
+}
+@font-face {
+  font-family: ubuntu;
+  font-weight: 700;
+  src: url(../../assets/fonts/Ubuntu-Bold.ttf);
+}
+
+:root {
+  /* Global Color */
+  --bg-white: rgb(255, 255, 255);
+  --bg-blue-light: rgba(239, 245, 255);
+  --bg-blue-sky: rgba(190, 225, 255);
+  --bg-purple-light: rgba(248, 249, 254);
+  --bg-blue-sharp: rgb(70, 34, 255);
+  --font-white: rgb(255, 255, 255);
+  --font-blue-dark: rgb(11, 38, 74);
+  --font-gray-light: rgb(174, 174, 185);
+  --font-purple-light: rgb(156, 156, 255);
+  --font-purple-dark: rgb(125, 111, 214);
+  --outline-gray: rgb(228, 228, 231);
+  --outline-purple-light: rgb(176, 168, 255);
+  --outline-purple-dark: rgb(130, 123, 180);
+  --outline-red-error: rgb(173, 115, 125);
+  --button-blue-dark: rgb(4, 38, 90);
+  --font-red-error: rgb(225, 97, 123);
+}
+
+body {
+  height: 100vh;
+  font-family: ubuntu, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

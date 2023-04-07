@@ -1,0 +1,20 @@
+.style:global {
+  @apply text-sm font-medium;
+
+  --numCircle-radius: 30px;
+  display: inline-block;
+  height: var(--numCircle-radius);
+  width: var(--numCircle-radius);
+  border-radius: 50%;
+  border: 1px solid var(--outline-purple-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--font-white);
+  margin: 0 0.35rem;
+
+  &.active {
+    color: var(--font-blue-dark);
+    background-color: var(--bg-blue-sky);
+  }
+}
