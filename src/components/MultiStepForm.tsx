@@ -21,15 +21,15 @@ const MultiStepForm = () => {
       <StepBar />
       <div className="formContainer">
         <div className="formContent">
-          <PersonalInfoFormSection />
-          {/* <SelectPlanFormSection /> */}
+          {/* <PersonalInfoFormSection /> */}
+          <SelectPlanFormSection />
         </div>
       </div>
       <div className="actionsBar">
         <button
           className="py-1 px-3 rounded-sm mt-3 mb-2 mx-3 text-base"
-          onClick={() => personalInfoFormik.handleSubmit()}
-          // onClick={() => selectPlanFormik.handleSubmit()}
+          // onClick={() => personalInfoFormik.handleSubmit()}
+          onClick={() => selectPlanFormik.handleSubmit()}
           type="submit"
         >
           Next Step

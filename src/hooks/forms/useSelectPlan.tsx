@@ -4,6 +4,7 @@ import {
   PlanLevel,
   PaymentPeriod,
   SelectPlanFormValues,
+  PartialSelectPlanFormValues,
 } from '@/store/slices/formSlice';
 import { FormikProps, useFormik } from 'formik';
 import React from 'react';
@@ -18,32 +19,21 @@ function useSelectPlan(form: FormState) {
   const dispatch = useDispatch();
   const { tCapFirst } = useCustomTranslation('common');
   const formik = useFormik({
-    initialValues: {
-      planLevel: 0 as PlanLevel,
-      paymentPeriod: 1 as PaymentPeriod,
-    },
-    validate: (values) => {
+    initialValues: {},
+    validate: (values: any) => {
       const errors: any = {};
-      // if (!values.name) {
-      //   errors.name = tCapFirst('form-validation-error-required');
-      // }
-      // if (!values.email) {
-      //   errors.email = tCapFirst('form-validation-error-required');
-      // } else if (!RegExp(regExp.email, 'i').test(values.email)) {
-      //   errors.email = tCapFirst('form-validation-error-invalid-email');
-      // }
-
-      // if (!values.phone) {
-      //   errors.phone = tCapFirst('form-validation-error-required');
-      // } else if (!RegExp(regExp.phone, 'im').test(values.phone)) {
-      //   errors.phone = tCapFirst('form-validation-error-invalid-phone');
-      // }
+      if (!Number.isInteger(values?.planLevel)) {
+        errors.planLevel = tCapFirst('form-validation-error-required');
+      }
+      if (!Number.isInteger(values?.paymentPeriod)) {
+        errors.paymentPeriod = tCapFirst('form-validation-error-required');
+      }
 
       return errors;
     },
     onSubmit: (values, { setSubmitting }) => {
-      console.log(values);
-      dispatch(setSelectPlan(values));
+      console.log('onSubmit', values);
+      dispatch(setSelectPlan(values as SelectPlanFormValues));
     },
   });
 
@@ -61,7 +51,7 @@ function useSelectPlan(form: FormState) {
   };
 
   return [formik, SelectPlanFormSection] as [
-    FormikProps<SelectPlanFormValues>,
+    FormikProps<PartialSelectPlanFormValues>,
     () => JSX.Element
   ];
 }

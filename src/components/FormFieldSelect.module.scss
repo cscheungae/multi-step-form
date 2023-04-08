@@ -1,0 +1,32 @@
+.wrapper :global {
+  .optionTile {
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    border: 1.5px solid var(--outline-gray);
+    @apply rounded-md;
+
+    &.active {
+      border-color: var(--outline-purple-dark);
+      background-color: var(--bg-purple-light);
+    }
+
+    .planDetail {
+      margin-left: 1rem;
+
+      .planName {
+        color: var(--font-blue-dark);
+        @apply font-bold;
+      }
+
+      .price {
+        color: var(--font-gray-light);
+        @apply text-sm;
+      }
+
+      .bonus {
+        color: var(--font-blue-dark);
+        @apply text-xs;
+      }
+    }
+  }
+}

@@ -19,6 +19,7 @@ type SelectPlanKeys = 'planLevel' | 'paymentPeriod';
 
 export type PersonalInfoFormValues = Pick<FormState, PersonalInfoKeys>;
 export type SelectPlanFormValues = Pick<FormState, SelectPlanKeys>;
+export type PartialSelectPlanFormValues = Partial<SelectPlanFormValues>;
 
 export type FormFieldFormKeys = 'name' | 'email' | 'phone';
 export type FormFieldsFormValues = Pick<FormState, FormFieldFormKeys>;
