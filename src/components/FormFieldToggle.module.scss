@@ -1,0 +1,14 @@
+.wrapper:global {
+  & > div {
+    background: var(--bg-purple-light);
+    padding: 1rem 0;
+
+    span {
+      color: var(--font-gray-light);
+
+      &.selected {
+        color: var(--font-blue-dark);
+      }
+    }
+  }
+}
