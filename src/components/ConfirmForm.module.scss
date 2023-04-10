@@ -1,0 +1,65 @@
+.wrapper :global {
+  .planLevelSummary,
+  .addonsSummaryItem,
+  .total {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .summary {
+    background: var(--bg-gray-light);
+    @apply rounded-xl p-4 mt-5;
+
+    .planLevelSummary {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      @apply text-xs;
+
+      .left {
+        display: flex;
+        flex-direction: column;
+
+        .plan {
+          color: var(--font-blue-dark);
+          @apply font-medium;
+        }
+
+        .change {
+          color: var(--font-gray-light);
+          @apply underline;
+        }
+      }
+
+      .right {
+        align-self: center;
+        @apply font-medium;
+      }
+    }
+
+    .addonsSummary {
+      .addonsSummaryItem {
+        .left {
+          @apply text-xs;
+          color: var(--font-gray-light);
+        }
+        .right {
+          @apply text-xs;
+        }
+
+        @apply py-1;
+      }
+    }
+  }
+
+  .total {
+    @apply p-4;
+
+    .left {
+      @apply text-sm;
+    }
+    .right {
+      @apply text-sm font-bold;
+    }
+  }
+}

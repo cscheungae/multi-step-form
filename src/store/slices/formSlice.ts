@@ -41,7 +41,7 @@ export type FormFieldsSelectFormValues = Pick<
 
 const initialState: FormState = {
   // formStep: 'personalInfo',
-  formStep: 'addons',
+  formStep: 'confirm',
   name: '',
   email: '',
   phone: '',
@@ -88,11 +88,21 @@ export const formSlice = createSlice({
       );
       state.formStep = formStepArr[currentStepIndex + 1];
     },
+    goStep: (
+      state,
+      action: {
+        type: string;
+        payload: { step: FormStep };
+      }
+    ) => {
+      console.log('goStep');
+      state.formStep = action.payload.step;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setPersonalInfo, setSelectPlan, setAddons, goNextStep } =
+export const { setPersonalInfo, setSelectPlan, setAddons, goNextStep, goStep } =
   formSlice.actions;
 
 export default formSlice.reducer;

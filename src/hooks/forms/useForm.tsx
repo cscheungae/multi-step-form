@@ -7,12 +7,14 @@ import { FormikProps } from 'formik';
 import { FormStep } from '@/store/slices/formSlice';
 import { render } from 'react-dom';
 import useAddons from './useAddons';
+import useConfirm from './useConfirm';
 
 function useForm(formStep: FormStep) {
   const form = useSelector((root: RootState) => root.form);
   const personalInfoFormHandlers = usePersonalInfo(form);
   const selectPlanHandlers = useSelectPlan(form);
   const addonsHandlers = useAddons(form);
+  const confirmHandlers = useConfirm(form);
 
   let renderForm: [FormikProps<any>, () => JSX.Element];
 
@@ -27,6 +29,10 @@ function useForm(formStep: FormStep) {
     }
     case 'addons': {
       renderForm = [...addonsHandlers];
+      break;
+    }
+    case 'confirm': {
+      renderForm = [...confirmHandlers];
       break;
     }
     default: {

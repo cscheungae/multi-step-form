@@ -5,12 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { formStepArr } from '../store/slices/formSlice';
 import { RootState } from '@/store';
 import useForm from '@/hooks/forms/useForm';
+import useCustomTranslation from '@/hooks/useCustomTranslation';
 
 const MultiStepForm = () => {
   const dispatch = useDispatch();
   const form = useSelector((root: RootState) => root.form);
   const { formStep } = form;
   const [formik, FormSection] = useForm(formStep);
+  const { tCapFirst } = useCustomTranslation('common');
 
   return (
     <div className={styles.wrapper}>
@@ -28,7 +30,9 @@ const MultiStepForm = () => {
           }}
           type="submit"
         >
-          Next Step
+          {form.formStep === 'confirm'
+            ? tCapFirst('button-confirm')
+            : tCapFirst('button-next')}
         </button>
       </div>
     </div>

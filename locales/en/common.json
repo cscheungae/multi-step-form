@@ -18,6 +18,7 @@
   "form-validation-error-invalid-phone": "invalid phone",
   "button-next": "next step",
   "button-back": "go back",
+  "button-confirm": "confirm",
   "placeholder-yourinfo-name": "e.g. Stephen King",
   "placeholder-yourinfo-email": "e.g. stephenking@lorem.com",
   "placeholder-yourinfo-phone": "e.g. 123456789",
@@ -35,5 +36,9 @@
   "form-addons-larger-storage-title": "Large storage",
   "form-addons-larger-storage-description": "extra 1TB of cloud save",
   "form-addons-customizable-title": "customizable profile",
-  "form-addons-customizable-description": "custom theme on your profile"
+  "form-addons-customizable-description": "custom theme on your profile",
+  "form-confirm-title": "finishing up",
+  "form-confirm-description": "Double-check everything looks Ok before confirming.",
+  "form-confirm-change": "Change",
+  "form-confirm-total": "total (per month)"
 }
