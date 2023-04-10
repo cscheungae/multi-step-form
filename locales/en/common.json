@@ -1,4 +1,5 @@
 {
+  "": "",
   "step-1": "step 1",
   "step-2": "step 2",
   "step-3": "step 3",
@@ -26,5 +27,13 @@
   "form-selectPlan-planLevel-1": "advanced",
   "form-selectPlan-planLevel-2": "pro",
   "form-selectPlan-paymentPeriod-month": "monthly",
-  "form-selectPlan-paymentPeriod-year": "yearly"
+  "form-selectPlan-paymentPeriod-year": "yearly",
+  "form-addons-title": "pick add-ons",
+  "form-addons-description": "add-ons help enhance your gaming experience.",
+  "form-addons-online-service-title": "online service",
+  "form-addons-online-service-description": "access to multiplayer games",
+  "form-addons-larger-storage-title": "Large storage",
+  "form-addons-larger-storage-description": "extra 1TB of cloud save",
+  "form-addons-customizable-title": "customizable profile",
+  "form-addons-customizable-description": "custom theme on your profile"
 }

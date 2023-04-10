@@ -3,6 +3,10 @@ import { FormikProps } from 'formik';
 import { PersonalInfoFormValues } from '../store/slices/formSlice';
 import FormField from './FormField';
 
+/**
+ * @todo: Accessibility issue: Tab does not work for jumping between form input fields
+ */
+
 export const PersonalInfoForm = (props: {
   formik: FormikProps<PersonalInfoFormValues>;
 }) => {

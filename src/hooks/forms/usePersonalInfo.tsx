@@ -1,6 +1,10 @@
-import { FormState, setPersonalInfo } from '@/store/slices/formSlice';
+import {
+  FormState,
+  goNextStep,
+  setPersonalInfo,
+} from '@/store/slices/formSlice';
 import { FormikProps, useFormik } from 'formik';
-import React from 'react';
+import React, { useEffect } from 'react';
 import useCustomTranslation from '../useCustomTranslation';
 import regExp from '@/helpers/regExp';
 import { useDispatch } from 'react-redux';
@@ -12,6 +16,7 @@ function usePersonalInfo(form: FormState) {
   const { tCapFirst } = useCustomTranslation('common');
   const formik = useFormik({
     initialValues: { name: form.name, email: form.email, phone: form.phone },
+    // initialValues: { name: '', email: '', phone: '' },
     validate: (values) => {
       const errors: any = {};
       if (!values.name) {
@@ -32,8 +37,8 @@ function usePersonalInfo(form: FormState) {
       return errors;
     },
     onSubmit: (values, { setSubmitting }) => {
-      console.log(values);
       dispatch(setPersonalInfo(values));
+      dispatch(goNextStep());
     },
   });
 
@@ -48,6 +53,20 @@ function usePersonalInfo(form: FormState) {
       </>
     );
   };
+
+  useEffect(() => {
+    console.log(
+      '%c usePersonalInfo rerender',
+      'background: #222; color: #0dad40'
+    );
+  });
+
+  useEffect(() => {
+    console.log(
+      '%c usePersonalInfo rerender',
+      'background: #222; color: #ff2121'
+    );
+  }, [formik]);
 
   return [formik, PersonalInfoFormSection] as [
     FormikProps<PersonalInfoFormValues>,

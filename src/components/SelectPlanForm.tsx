@@ -10,12 +10,13 @@ import PlanLevelSVG1 from '../../assets/images/icon-advanced.svg';
 import PlanLevelSVG2 from '../../assets/images/icon-pro.svg';
 import useCustomTranslation from '@/hooks/useCustomTranslation';
 import OptionTile from './OptionTile';
+import FormFieldToggle from './FormFieldToggle';
 
 export const SelectPlanForm = (props: {
   formik: FormikProps<PartialSelectPlanFormValues>;
 }) => {
   const { formik } = props;
-  const { handleSubmit, setFieldValue } = formik;
+  const { handleSubmit, setFieldValue, values, errors } = formik;
   const { tCapFirst } = useCustomTranslation('common');
 
   const options: {
@@ -54,14 +55,30 @@ export const SelectPlanForm = (props: {
         formKey={'planLevel'}
         i18n=""
         placeholderI18n=""
-        formik={formik}
+        // formik={formik}
+        errors={errors}
       >
         <>
           {options.map((optionProps, i) => (
-            <OptionTile {...optionProps} setFieldValue={setFieldValue} />
+            <OptionTile
+              key={i}
+              {...optionProps}
+              setFieldValue={setFieldValue}
+              selected={values.planLevel === optionProps.planLevel}
+            />
           ))}
         </>
       </FormFieldSelect>
+      <FormFieldToggle
+        checked={values.paymentPeriod === 12}
+        onChange={(e) =>
+          setFieldValue('paymentPeriod', values.paymentPeriod === 1 ? 12 : 1)
+        }
+        options={[
+          tCapFirst('form-selectPlan-paymentPeriod-month'),
+          tCapFirst('form-selectPlan-paymentPeriod-year'),
+        ]}
+      />
     </form>
   );
 };

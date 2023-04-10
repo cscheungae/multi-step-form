@@ -1,0 +1,29 @@
+.wrapper :global {
+  .tile {
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    border: 1.5px solid var(--outline-gray);
+    @apply rounded-md;
+
+    &.selected {
+      border-color: var(--outline-purple-dark);
+      background-color: var(--bg-purple-light);
+    }
+
+    input:checked {
+      background-color: black;
+    }
+
+    .title {
+      color: var(--font-blue-dark);
+    }
+
+    .description {
+      color: var(--font-gray-light);
+    }
+
+    .price {
+      color: var(--font-purple-dark);
+    }
+  }
+}

@@ -5,6 +5,7 @@ import {
   PaymentPeriod,
   SelectPlanFormValues,
   PartialSelectPlanFormValues,
+  goNextStep,
 } from '@/store/slices/formSlice';
 import { FormikProps, useFormik } from 'formik';
 import React from 'react';
@@ -19,7 +20,7 @@ function useSelectPlan(form: FormState) {
   const dispatch = useDispatch();
   const { tCapFirst } = useCustomTranslation('common');
   const formik = useFormik({
-    initialValues: {},
+    initialValues: { paymentPeriod: 1 } as PartialSelectPlanFormValues,
     validate: (values: any) => {
       const errors: any = {};
       if (!Number.isInteger(values?.planLevel)) {
@@ -32,8 +33,8 @@ function useSelectPlan(form: FormState) {
       return errors;
     },
     onSubmit: (values, { setSubmitting }) => {
-      console.log('onSubmit', values);
       dispatch(setSelectPlan(values as SelectPlanFormValues));
+      dispatch(goNextStep());
     },
   });
 
@@ -44,7 +45,6 @@ function useSelectPlan(form: FormState) {
         <p className="formDescription">
           {tCapFirst('form-selectPlan-description')}
         </p>
-        {/* <PersonalInfoForm {...{ formik }} /> */}
         <SelectPlanForm {...{ formik }} />
       </>
     );

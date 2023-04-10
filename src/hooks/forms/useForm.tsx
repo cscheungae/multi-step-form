@@ -5,18 +5,14 @@ import usePersonalInfo from './usePersonalInfo';
 import useSelectPlan from './useSelectPlan';
 import { FormikProps } from 'formik';
 import { FormStep } from '@/store/slices/formSlice';
+import { render } from 'react-dom';
+import useAddons from './useAddons';
 
 function useForm(formStep: FormStep) {
   const form = useSelector((root: RootState) => root.form);
   const personalInfoFormHandlers = usePersonalInfo(form);
   const selectPlanHandlers = useSelectPlan(form);
-
-  useEffect(() => {
-    console.log('Mount useForm');
-    return () => {
-      console.log('Unmount useForm');
-    };
-  }, []);
+  const addonsHandlers = useAddons(form);
 
   let renderForm: [FormikProps<any>, () => JSX.Element];
 
@@ -27,6 +23,10 @@ function useForm(formStep: FormStep) {
     }
     case 'selectPlan': {
       renderForm = [...selectPlanHandlers];
+      break;
+    }
+    case 'addons': {
+      renderForm = [...addonsHandlers];
       break;
     }
     default: {

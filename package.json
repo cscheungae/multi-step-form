@@ -17,6 +17,7 @@
     "eslint": "8.37.0",
     "eslint-config-next": "13.3.0",
     "formik": "^2.2.9",
+    "lodash": "^4.17.21",
     "next": "13.3.0",
     "next-translate": "^2.0.4",
     "postcss": "8.4.21",
@@ -28,6 +29,7 @@
     "voca": "^1.4.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.192",
     "@types/voca": "^1.4.2",
     "next-translate-plugin": "^2.0.4",
     "sass": "^1.61.0"

@@ -1,10 +1,11 @@
 import useCustomTranslation from '@/hooks/useCustomTranslation';
-import { FormikProps } from 'formik';
+import { FormikErrors, FormikProps } from 'formik';
 import React, { Children, useEffect } from 'react';
 import styles from './FormFieldSelect.module.scss';
 import {
   FormFieldsSelectFormValues,
   PartialSelectPlanFormValues,
+  SelectPlanFormValues,
 } from '@/store/slices/formSlice';
 import PlanLevelSVG0 from '../../assets/images/icon-arcade.svg';
 import PlanLevelSVG1 from '../../assets/images/icon-advanced.svg';
@@ -17,28 +18,13 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   formKey: keyof FormFieldsSelectFormValues;
   i18n: string;
   placeholderI18n: string;
-  formik: FormikProps<PartialSelectPlanFormValues>;
+  // formik: FormikProps<PartialSelectPlanFormValues>;
+  errors: FormikErrors<Partial<PartialSelectPlanFormValues>>;
 }
 
 const FormFieldSelect = (props: InputProps) => {
   const { tCapFirst } = useCustomTranslation('common');
-  const { children, formKey, formik, i18n, placeholderI18n, ...restProps } =
-    props;
-  const {
-    values,
-    errors,
-    touched,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    isSubmitting,
-    setFieldValue,
-    setTouched,
-  } = formik;
-
-  useEffect(() => {
-    console.log('values', values);
-  });
+  const { children, formKey, i18n, placeholderI18n, errors } = props;
 
   return (
     <div className={styles.wrapper}>

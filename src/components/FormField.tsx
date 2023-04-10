@@ -1,8 +1,9 @@
 import useCustomTranslation from '@/hooks/useCustomTranslation';
 import { FormFieldsFormValues } from '../store/slices/formSlice';
 import { FormikProps } from 'formik';
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import styles from './FormField.module.scss';
+import _, { debounce } from 'lodash';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   formKey: keyof FormFieldsFormValues;
@@ -22,7 +23,16 @@ const FormField = (props: InputProps) => {
     handleBlur,
     handleSubmit,
     isSubmitting,
+    setFieldValue,
+    setFieldTouched,
   } = formik;
+
+  // const debounceHandleChange = useCallback(_.debounce(handleChange, 200), [
+  //   handleChange,
+  // ]);
+
+  const debounceHandleChange = _.debounce(handleChange, 200);
+  const [val, setVal] = useState(values[formKey]);
 
   return (
     <div className="my-4">
@@ -36,9 +46,13 @@ const FormField = (props: InputProps) => {
       </div>
       <input
         name={formKey}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={values[formKey]}
+        onChange={(e) => {
+          setVal(e.target.value);
+        }}
+        onBlur={(e) => {
+          setFieldValue(formKey, val);
+        }}
+        value={val}
         className={styles.input}
         {...restProps}
         placeholder={tCapFirst(placeholderI18n)}

@@ -5,7 +5,7 @@
     border: 1.5px solid var(--outline-gray);
     @apply rounded-md;
 
-    &.active {
+    &.selected {
       border-color: var(--outline-purple-dark);
       background-color: var(--bg-purple-light);
     }

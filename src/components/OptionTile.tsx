@@ -2,6 +2,11 @@ import React from 'react';
 import Image from 'next/image';
 import { PlanLevel } from '@/store/slices/formSlice';
 
+/**
+ *
+ * @todo Issues need fix: onclick optionTile, it is expected not to "blink"!
+ */
+
 const OptionTile = (props: {
   planLevel: PlanLevel;
   setFieldValue: (
@@ -13,9 +18,17 @@ const OptionTile = (props: {
   planName: string;
   price: number;
   bonusMonths: number;
+  selected: boolean;
 }) => {
-  const { planLevel, setFieldValue, svgSrc, planName, price, bonusMonths } =
-    props;
+  const {
+    planLevel,
+    setFieldValue,
+    svgSrc,
+    planName,
+    price,
+    bonusMonths,
+    selected,
+  } = props;
   return (
     <div
       key={planLevel}
@@ -23,7 +36,7 @@ const OptionTile = (props: {
         setFieldValue('planLevel', planLevel);
       }}
     >
-      <div className="flex optionTile">
+      <div className={`flex optionTile ${selected ? 'selected' : ''}`}>
         <Image
           src={svgSrc}
           height={45}

@@ -1,7 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-type FormStep = 'personalInfo' | 'selectPlan' | 'addons' | 'confirm';
+export const formStepArr = [
+  'personalInfo',
+  'selectPlan',
+  'addons',
+  'confirm',
+] as const;
+export type FormStep = typeof formStepArr[number];
 export type PlanLevel = 0 | 1 | 2;
 export type PaymentPeriod = 1 | 12;
 
@@ -12,14 +18,17 @@ export interface FormState {
   phone: string;
   planLevel: PlanLevel;
   paymentPeriod: PaymentPeriod;
+  addons: number[];
 }
 
 type PersonalInfoKeys = 'name' | 'email' | 'phone';
 type SelectPlanKeys = 'planLevel' | 'paymentPeriod';
+type AddonKeys = 'addons';
 
 export type PersonalInfoFormValues = Pick<FormState, PersonalInfoKeys>;
 export type SelectPlanFormValues = Pick<FormState, SelectPlanKeys>;
 export type PartialSelectPlanFormValues = Partial<SelectPlanFormValues>;
+export type AddonsFormValues = Pick<FormState, AddonKeys>;
 
 export type FormFieldFormKeys = 'name' | 'email' | 'phone';
 export type FormFieldsFormValues = Pick<FormState, FormFieldFormKeys>;
@@ -31,12 +40,14 @@ export type FormFieldsSelectFormValues = Pick<
 >;
 
 const initialState: FormState = {
-  formStep: 'personalInfo',
+  // formStep: 'personalInfo',
+  formStep: 'addons',
   name: '',
   email: '',
   phone: '',
   planLevel: 0,
   paymentPeriod: 1,
+  addons: [],
 };
 
 export const formSlice = createSlice({
@@ -63,10 +74,25 @@ export const formSlice = createSlice({
       state.planLevel = planLevel;
       state.paymentPeriod = paymentPeriod;
     },
+    setAddons: (
+      state,
+      action: { type: string; payload: Pick<FormState, AddonKeys> }
+    ) => {
+      const { addons } = action.payload;
+      state.addons = addons;
+    },
+    goNextStep: (state) => {
+      const currentStep = state.formStep;
+      const currentStepIndex = formStepArr.findIndex(
+        (el) => el === currentStep
+      );
+      state.formStep = formStepArr[currentStepIndex + 1];
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setPersonalInfo, setSelectPlan } = formSlice.actions;
+export const { setPersonalInfo, setSelectPlan, setAddons, goNextStep } =
+  formSlice.actions;
 
 export default formSlice.reducer;
