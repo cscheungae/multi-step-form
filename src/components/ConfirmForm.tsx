@@ -41,7 +41,6 @@ const ConfirmForm = () => {
               className="change"
               onClick={() => {
                 dispatch(goStep({ step: 'selectPlan' }));
-                console.log('clicked');
               }}
             >
               Change

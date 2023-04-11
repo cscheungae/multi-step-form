@@ -50,20 +50,6 @@ function usePersonalInfo(form: FormState) {
     );
   };
 
-  useEffect(() => {
-    console.log(
-      '%c usePersonalInfo rerender',
-      'background: #222; color: #0dad40'
-    );
-  });
-
-  useEffect(() => {
-    console.log(
-      '%c usePersonalInfo rerender',
-      'background: #222; color: #ff2121'
-    );
-  }, [formik]);
-
   return [formik, PersonalInfoFormSection] as [
     FormikProps<PersonalInfoFormValues>,
     () => JSX.Element

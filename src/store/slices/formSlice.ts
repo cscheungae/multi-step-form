@@ -60,7 +60,6 @@ export const formSlice = createSlice({
         payload: { step: FormStep };
       }
     ) => {
-      console.log('goStep');
       state.formStep = action.payload.step;
     },
     goBack: (state) => {
