@@ -17,7 +17,7 @@ const OptionTile = (props: {
   svgSrc: any;
   planName: string;
   price: number;
-  bonusMonths: number;
+  bonusMonths?: number;
   selected: boolean;
 }) => {
   const {
@@ -47,7 +47,9 @@ const OptionTile = (props: {
         <div className="planDetail">
           <h2 className="planName">{`${planName}`}</h2>
           <p className="price">{`$${price}/yr`}</p>
-          <p className="bonus">{`${bonusMonths} months free`}</p>
+          {bonusMonths && (
+            <p className="bonus">{`${bonusMonths} months free`}</p>
+          )}
         </div>
       </div>
     </div>

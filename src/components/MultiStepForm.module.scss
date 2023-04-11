@@ -31,11 +31,21 @@
     flex: 0 0 auto;
     background: var(--bg-white);
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 
-    button {
+    button.back {
+      color: var(--font-gray-light);
+      @apply font-medium;
+    }
+
+    button.next {
+      @apply ml-auto;
       background-color: var(--button-blue-dark);
       color: var(--font-white);
+
+      &.confirm {
+        background-color: var(--bg-blue-sharp);
+      }
     }
   }
 }

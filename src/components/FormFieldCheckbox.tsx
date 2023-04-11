@@ -5,6 +5,7 @@ import styles from './FormFieldCheckbox.module.scss';
 import {
   FormFieldsSelectFormValues,
   PartialSelectPlanFormValues,
+  PaymentPeriod,
   SelectPlanFormValues,
 } from '@/store/slices/formSlice';
 import PlanLevelSVG0 from '../../assets/images/icon-arcade.svg';
@@ -21,11 +22,19 @@ export interface InputProps
   addonTitle: string;
   addonDescription: string;
   price: number;
+  paymentPeriod: PaymentPeriod;
 }
 
 const FormFieldCheckbox = (props: InputProps) => {
-  const { checked, onChange, addonKey, addonTitle, addonDescription, price } =
-    props;
+  const {
+    checked,
+    onChange,
+    addonKey,
+    addonTitle,
+    addonDescription,
+    price,
+    paymentPeriod,
+  } = props;
 
   return (
     <div className={styles.wrapper}>
@@ -50,7 +59,9 @@ const FormFieldCheckbox = (props: InputProps) => {
           </label>
           <p className="text-xs description">{addonDescription}</p>
         </div>
-        <span className="price ml-auto">{`+$${price}/yr`}</span>
+        <span className="price ml-auto">{`+$${price}/${
+          paymentPeriod === 1 ? 'mo' : 'yr'
+        }`}</span>
       </div>
     </div>
   );

@@ -1,17 +1,42 @@
 import React from 'react';
 import styles from './ConfirmForm.module.scss';
-import { FormStep, goStep } from '@/store/slices/formSlice';
-import { useDispatch } from 'react-redux';
+import { FormStep } from '@/types';
+import { goStep } from '@/store/slices/formSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import planOptions from '../data/planOptions';
+import addonsOptions from '../data/addonsOptions';
+import { RootState } from '@/store';
+import useCustomTranslation from '@/hooks/useCustomTranslation';
 
 const ConfirmForm = () => {
   const dispatch = useDispatch();
+  const { planLevel, paymentPeriod, addons } = useSelector(
+    (state: RootState) => state.form
+  );
+  const { tCapFirst } = useCustomTranslation('common');
+
+  const selectedPlan = planOptions.find(
+    (option) =>
+      option.paymentPeriod === paymentPeriod && option.planLevel === planLevel
+  );
+
+  const selectedAddons = addonsOptions.filter(
+    (addon) =>
+      addons.includes(addon.addonKey) && addon.paymentPeriod === paymentPeriod
+  );
+
+  const total =
+    (selectedPlan?.price ?? 0) +
+    selectedAddons.reduce((acc, next) => acc + next.price, 0);
 
   return (
     <div className={styles.wrapper}>
       <div className="summary">
         <div className="planLevelSummary">
           <div className="left">
-            <span className="plan">Arcade (Monthly)</span>
+            <span className="plan">{`${tCapFirst(
+              selectedPlan?.planName ?? ''
+            )} (${paymentPeriod === 1 ? 'Monthly' : 'Yearly'})`}</span>
             <a
               className="change"
               onClick={() => {
@@ -22,22 +47,30 @@ const ConfirmForm = () => {
               Change
             </a>
           </div>
-          <div className="right">$9/mo</div>
+          <div className="right">{`$${selectedPlan?.price}/${
+            paymentPeriod === 1 ? 'mo' : 'yr'
+          }`}</div>
         </div>
         <div className="addonsSummary">
-          <div className="addonsSummaryItem">
-            <div className="left">Online service</div>
-            <div className="right">+$1/mo</div>
-          </div>
-          <div className="addonsSummaryItem">
-            <div className="left">Larger service</div>
-            <div className="right">+$2/mo</div>
-          </div>
+          {selectedAddons.map((addon) => (
+            <div className="addonsSummaryItem">
+              <div className="left">{tCapFirst(addon.addonTitle)}</div>
+              <div className="right">{`+$${addon.price}/${
+                addon.paymentPeriod === 1 ? 'mo' : 'yr'
+              }`}</div>
+            </div>
+          ))}
         </div>
       </div>
       <div className="total">
-        <div className="left">Toal (per month)</div>
-        <div className="right">$12/mo</div>
+        {/* <div className="left">Toal (per month)</div> */}
+        <div className="left">{`Total (per ${
+          paymentPeriod === 1 ? 'month' : 'year'
+        })`}</div>
+        {/* <div className="right">$12/mo</div> */}
+        <div className="right">{`$${total}/${
+          paymentPeriod === 1 ? 'mo' : 'yr'
+        }`}</div>
       </div>
     </div>
   );

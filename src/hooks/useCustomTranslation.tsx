@@ -17,6 +17,7 @@ function useCustomTranslation(fileName: string) {
 
   return {
     tCapFirst,
+    t,
   };
 }
 

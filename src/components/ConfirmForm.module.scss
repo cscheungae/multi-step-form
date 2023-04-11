@@ -56,9 +56,11 @@
     @apply p-4;
 
     .left {
+      color: var(--font-gray-light);
       @apply text-sm;
     }
     .right {
+      color: var(--font-blue-sharp);
       @apply text-sm font-bold;
     }
   }

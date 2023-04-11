@@ -1,53 +1,22 @@
+import {
+  FormState,
+  FormStep,
+  PersonalInfoKeys,
+  SelectPlanKeys,
+  formStepArr,
+} from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-export const formStepArr = [
-  'personalInfo',
-  'selectPlan',
-  'addons',
-  'confirm',
-] as const;
-export type FormStep = typeof formStepArr[number];
-export type PlanLevel = 0 | 1 | 2;
-export type PaymentPeriod = 1 | 12;
-
-export interface FormState {
-  formStep: FormStep;
-  name: string;
-  email: string;
-  phone: string;
-  planLevel: PlanLevel;
-  paymentPeriod: PaymentPeriod;
-  addons: number[];
-}
-
-type PersonalInfoKeys = 'name' | 'email' | 'phone';
-type SelectPlanKeys = 'planLevel' | 'paymentPeriod';
-type AddonKeys = 'addons';
-
-export type PersonalInfoFormValues = Pick<FormState, PersonalInfoKeys>;
-export type SelectPlanFormValues = Pick<FormState, SelectPlanKeys>;
-export type PartialSelectPlanFormValues = Partial<SelectPlanFormValues>;
-export type AddonsFormValues = Pick<FormState, AddonKeys>;
-
-export type FormFieldFormKeys = 'name' | 'email' | 'phone';
-export type FormFieldsFormValues = Pick<FormState, FormFieldFormKeys>;
-
-export type FormFieldSelectFormKeys = 'planLevel' | 'paymentPeriod';
-export type FormFieldsSelectFormValues = Pick<
-  FormState,
-  FormFieldSelectFormKeys
->;
-
 const initialState: FormState = {
-  // formStep: 'personalInfo',
-  formStep: 'confirm',
+  formStep: 'personalInfo',
   name: '',
   email: '',
   phone: '',
   planLevel: 0,
   paymentPeriod: 1,
   addons: [],
+  completed: false,
 };
 
 export const formSlice = createSlice({
@@ -74,12 +43,8 @@ export const formSlice = createSlice({
       state.planLevel = planLevel;
       state.paymentPeriod = paymentPeriod;
     },
-    setAddons: (
-      state,
-      action: { type: string; payload: Pick<FormState, AddonKeys> }
-    ) => {
-      const { addons } = action.payload;
-      state.addons = addons;
+    setAddons: (state, action: { type: string; payload: number[] }) => {
+      state.addons = action.payload;
     },
     goNextStep: (state) => {
       const currentStep = state.formStep;
@@ -98,11 +63,34 @@ export const formSlice = createSlice({
       console.log('goStep');
       state.formStep = action.payload.step;
     },
+    goBack: (state) => {
+      const currentStep = state.formStep;
+      const currentStepIndex = formStepArr.findIndex(
+        (el) => el === currentStep
+      );
+      state.formStep = formStepArr[currentStepIndex - 1];
+    },
+    setCompleted: (
+      state,
+      action: {
+        type: string;
+        payload: { completed: boolean };
+      }
+    ) => {
+      state.completed = action.payload.completed;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setPersonalInfo, setSelectPlan, setAddons, goNextStep, goStep } =
-  formSlice.actions;
+export const {
+  setPersonalInfo,
+  setSelectPlan,
+  setAddons,
+  goNextStep,
+  goStep,
+  goBack,
+  setCompleted,
+} = formSlice.actions;
 
 export default formSlice.reducer;

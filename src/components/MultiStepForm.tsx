@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import styles from './MultiStepForm.module.scss';
 import StepBar from './mobile/StepBar';
 import { useDispatch, useSelector } from 'react-redux';
-import { formStepArr } from '../store/slices/formSlice';
+import { goBack } from '../store/slices/formSlice';
 import { RootState } from '@/store';
 import useForm from '@/hooks/forms/useForm';
 import useCustomTranslation from '@/hooks/useCustomTranslation';
+import { formStepArr } from '../types';
 
 const MultiStepForm = () => {
   const dispatch = useDispatch();
@@ -22,19 +23,35 @@ const MultiStepForm = () => {
           <FormSection />
         </div>
       </div>
-      <div className="actionsBar">
-        <button
-          className="py-1 px-3 rounded-sm mt-3 mb-2 mx-3 text-base"
-          onClick={() => {
-            formik.handleSubmit();
-          }}
-          type="submit"
-        >
-          {form.formStep === 'confirm'
-            ? tCapFirst('button-confirm')
-            : tCapFirst('button-next')}
-        </button>
-      </div>
+      {!form.completed && (
+        <div className="actionsBar">
+          {/* Go Back Button */}
+          {form.formStep !== 'personalInfo' && (
+            <button
+              className="back py-1 px-3 mt-3 mb-2 mx-3 text-base"
+              onClick={() => {
+                dispatch(goBack());
+              }}
+            >
+              {tCapFirst('button-back')}
+            </button>
+          )}
+          {/* Go Next Button */}
+          <button
+            className={`next py-1 px-3 rounded mt-3 mb-2 mx-3 text-base ${
+              form.formStep === 'confirm' ? 'confirm' : ''
+            }`}
+            onClick={() => {
+              formik.handleSubmit();
+            }}
+            type="submit"
+          >
+            {form.formStep === 'confirm'
+              ? tCapFirst('button-confirm')
+              : tCapFirst('button-next')}
+          </button>
+        </div>
+      )}
     </div>
   );
 };

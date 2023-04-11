@@ -1,19 +1,18 @@
+import { setSelectPlan, goNextStep, setAddons } from '@/store/slices/formSlice';
 import {
   FormState,
-  setSelectPlan,
   PlanLevel,
   PaymentPeriod,
   SelectPlanFormValues,
   PartialSelectPlanFormValues,
-  goNextStep,
-} from '@/store/slices/formSlice';
+  PersonalInfoFormValues,
+} from '../../types';
 import { FormikProps, useFormik } from 'formik';
 import React from 'react';
 import useCustomTranslation from '../useCustomTranslation';
 import regExp from '@/helpers/regExp';
 import { useDispatch } from 'react-redux';
 import { PersonalInfoForm } from '@/components/PersonalInfoForm';
-import { PersonalInfoFormValues } from '../../store/slices/formSlice';
 import { SelectPlanForm } from '@/components/SelectPlanForm';
 
 function useSelectPlan(form: FormState) {
@@ -33,6 +32,7 @@ function useSelectPlan(form: FormState) {
       return errors;
     },
     onSubmit: (values, { setSubmitting }) => {
+      dispatch(setAddons([]));
       dispatch(setSelectPlan(values as SelectPlanFormValues));
       dispatch(goNextStep());
     },

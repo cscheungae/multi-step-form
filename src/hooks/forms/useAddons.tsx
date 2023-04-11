@@ -1,22 +1,21 @@
+import { setSelectPlan, goNextStep, setAddons } from '@/store/slices/formSlice';
 import {
+  AddonsFormValues,
   FormState,
-  setSelectPlan,
   PlanLevel,
   PaymentPeriod,
   SelectPlanFormValues,
   PartialSelectPlanFormValues,
-  goNextStep,
-  AddonsFormValues,
-  setAddons,
-} from '@/store/slices/formSlice';
+  PersonalInfoFormValues,
+} from '../../types';
 import { FormikProps, useFormik } from 'formik';
-import React from 'react';
+import React, { useEffect } from 'react';
 import useCustomTranslation from '../useCustomTranslation';
 import regExp from '@/helpers/regExp';
 import { useDispatch } from 'react-redux';
 import { PersonalInfoForm } from '@/components/PersonalInfoForm';
-import { PersonalInfoFormValues } from '../../store/slices/formSlice';
 import { AddonsForm } from '@/components/AddonsForm';
+import _ from 'lodash';
 
 function useAddons(form: FormState) {
   const dispatch = useDispatch();
@@ -25,10 +24,16 @@ function useAddons(form: FormState) {
     initialValues: { addons: form.addons } as AddonsFormValues,
     validate: (values: any) => {},
     onSubmit: (values, { setSubmitting }) => {
-      dispatch(setAddons(values));
+      dispatch(setAddons(values.addons));
       dispatch(goNextStep());
     },
   });
+
+  useEffect(() => {
+    if (_.isEqual(form.addons, formik.values.addons)) {
+      formik.setFieldValue('addons', form.addons);
+    }
+  }, [form.addons, formik.values.addons]);
 
   const AddonsFormSection = () => {
     return (

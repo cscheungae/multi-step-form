@@ -40,5 +40,7 @@
   "form-confirm-title": "finishing up",
   "form-confirm-description": "Double-check everything looks Ok before confirming.",
   "form-confirm-change": "Change",
-  "form-confirm-total": "total (per month)"
+  "form-confirm-total": "total (per month)",
+  "thank-you": "Thank you!",
+  "thank-you-message": "Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loregaming.com."
 }
