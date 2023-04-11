@@ -7,12 +7,7 @@ import {
   PartialSelectPlanFormValues,
   PaymentPeriod,
   SelectPlanFormValues,
-} from '@/store/slices/formSlice';
-import PlanLevelSVG0 from '../../assets/images/icon-arcade.svg';
-import PlanLevelSVG1 from '../../assets/images/icon-advanced.svg';
-import PlanLevelSVG2 from '../../assets/images/icon-pro.svg';
-
-import Image from 'next/image';
+} from '../types';
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {

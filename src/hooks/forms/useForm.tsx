@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import usePersonalInfo from './usePersonalInfo';
 import useSelectPlan from './useSelectPlan';
 import { FormikProps } from 'formik';
-import { FormStep } from '@/store/slices/formSlice';
+import { FormStep } from '../../types';
 import { render } from 'react-dom';
 import useAddons from './useAddons';
 import useConfirm from './useConfirm';

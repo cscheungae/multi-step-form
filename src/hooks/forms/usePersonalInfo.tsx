@@ -1,15 +1,11 @@
-import {
-  FormState,
-  goNextStep,
-  setPersonalInfo,
-} from '@/store/slices/formSlice';
+import { goNextStep, setPersonalInfo } from '@/store/slices/formSlice';
 import { FormikProps, useFormik } from 'formik';
 import React, { useEffect } from 'react';
 import useCustomTranslation from '../useCustomTranslation';
 import regExp from '@/helpers/regExp';
 import { useDispatch } from 'react-redux';
 import { PersonalInfoForm } from '@/components/PersonalInfoForm';
-import { PersonalInfoFormValues } from '../../store/slices/formSlice';
+import { FormState, PersonalInfoFormValues } from '../../types';
 
 function usePersonalInfo(form: FormState) {
   const dispatch = useDispatch();

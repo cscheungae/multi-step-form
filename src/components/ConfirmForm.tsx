@@ -52,8 +52,8 @@ const ConfirmForm = () => {
           }`}</div>
         </div>
         <div className="addonsSummary">
-          {selectedAddons.map((addon) => (
-            <div className="addonsSummaryItem">
+          {selectedAddons.map((addon, i) => (
+            <div className="addonsSummaryItem" key={i}>
               <div className="left">{tCapFirst(addon.addonTitle)}</div>
               <div className="right">{`+$${addon.price}/${
                 addon.paymentPeriod === 1 ? 'mo' : 'yr'
@@ -63,11 +63,9 @@ const ConfirmForm = () => {
         </div>
       </div>
       <div className="total">
-        {/* <div className="left">Toal (per month)</div> */}
         <div className="left">{`Total (per ${
           paymentPeriod === 1 ? 'month' : 'year'
         })`}</div>
-        {/* <div className="right">$12/mo</div> */}
         <div className="right">{`$${total}/${
           paymentPeriod === 1 ? 'mo' : 'yr'
         }`}</div>

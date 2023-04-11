@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { PlanLevel } from '@/store/slices/formSlice';
+import { PlanLevel } from '../types';
 
 /**
  *

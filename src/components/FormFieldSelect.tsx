@@ -6,7 +6,7 @@ import {
   FormFieldsSelectFormValues,
   PartialSelectPlanFormValues,
   SelectPlanFormValues,
-} from '@/store/slices/formSlice';
+} from '../types';
 import PlanLevelSVG0 from '../../assets/images/icon-arcade.svg';
 import PlanLevelSVG1 from '../../assets/images/icon-advanced.svg';
 import PlanLevelSVG2 from '../../assets/images/icon-pro.svg';

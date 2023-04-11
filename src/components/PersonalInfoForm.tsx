@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormikProps } from 'formik';
-import { PersonalInfoFormValues } from '../store/slices/formSlice';
+import { PersonalInfoFormValues } from '../types';
 import FormField from './FormField';
 
 /**

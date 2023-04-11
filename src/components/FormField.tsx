@@ -1,5 +1,5 @@
 import useCustomTranslation from '@/hooks/useCustomTranslation';
-import { FormFieldsFormValues } from '../store/slices/formSlice';
+import { FormFieldsFormValues } from '../types';
 import { FormikProps } from 'formik';
 import React, { useCallback, useState } from 'react';
 import styles from './FormField.module.scss';
